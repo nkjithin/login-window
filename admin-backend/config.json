@@ -1,0 +1,4 @@
+﻿{
+    "connectionString": "mongodb://localhost/admin_login",
+    "secret": "abcdefghijklmnopqrstuvwxyz0123456789"
+}
