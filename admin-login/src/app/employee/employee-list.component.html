@@ -1,0 +1,49 @@
+﻿<h1>Employees</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Employee</a>
+<form [formGroup]="form" >
+<div class="input-group" style="width: 60%;"> 
+    <span class="input-group-text">First Name</span> 
+    <input type="text" class="form-control" 
+        placeholder="Type something..." formControlName="empFirstName" /> 
+    <span class="input-group-text" 
+        style="border-left: 0; border-right: 0;"> 
+        Last Name 
+    </span> 
+    <input type="text" class="form-control"     
+        placeholder="Type something..." formControlName="empLastName" /> 
+  <a href="javascript:void(0);" class="btn btn-sm btn-success mb-2" style="margin-top: 5px;
+  margin-bottom: 4px !important;margin-left: 4px !important;" (click)="onSearch()">Search</a>
+ <a href="javascript:void(0);" class="btn btn-sm btn-success mb-2" style="margin-top: 5px;
+ margin-bottom: 4px !important;margin-left: 4px !important;background-color: #337fd0;
+border-color: #337fd0;" (click)="onReset()">Reset</a>
+</div> 
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 30%">Employee Code</th>
+            <th style="width: 30%">First Name</th>
+            <th style="width: 30%">Last Name</th>          
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">            
+            <td>{{employee.empCode}}</td>
+            <td>{{employee.empFirstName}}</td>
+            <td>{{employee.empLastName}}</td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{employee.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button (click)="deleteEmployee(employee.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="employee.isDeleting">
+                    <span *ngIf="employee.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!employee.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!employees">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
